@@ -1,0 +1,24 @@
+<h2>All Medals </h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Amounts of Medals
+        </th>
+    </tr>
+    <tr class="success-{{medal.classes}}" ng-repeat="medal in medals">
+        <td>{{$index+1}}</td>
+        <td>
+            {{medal.studentName}}
+        </td>
+        <td>
+            {{medal.amount}}
+        </td>
+    </tr>
+</table>

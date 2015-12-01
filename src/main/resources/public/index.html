@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="medalapp">
+<head>
+    <title>Medal App</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="/">Medals</a>
+            <a class="navbar-brand" href="/#/students">Students</a>
+            <a class="navbar-brand" href="/#/classes">Classes</a>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-view="">
+
+
+</div>
+
+<script src="/js/jquery.js"></script>
+<script src="/js/angular.js"></script>
+<script src="/js/angular-route.js"></script>
+<script src="/js/angular-cookies.js"></script>
+<script src="/js/angular-sanitize.js"></script>
+<script src="/js/angular-resource.js"></script>
+
+<script src="/scripts/app.js"></script>
+</body>
+</html>
