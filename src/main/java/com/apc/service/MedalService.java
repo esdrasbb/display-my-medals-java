@@ -72,8 +72,8 @@ public class MedalService {
     }
 
     public Student addClassToStudent(String studentId, String classId) {
-        //FIXME está adicionando somente um
-        db.getCollection("students").update(new BasicDBObject("_id", new ObjectId(studentId)), new BasicDBObject("$set", new BasicDBObject("participatedClasses", classId)));
+        BasicDBObject cmd = new BasicDBObject().append("$push", new BasicDBObject("participatedClasses", classId));
+        db.getCollection("students").update(new BasicDBObject("_id", new ObjectId(studentId)), cmd);
         return this.findStudent(studentId);
     }
 

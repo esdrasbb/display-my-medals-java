@@ -51,7 +51,6 @@ app.controller('CreateClassCtrl', function ($scope, $http, $location) {
     };
 
     $scope.createClass = function () {
-        console.log($scope.class);
         $http.post('/api/v1/classes', $scope.class).success(function (data) {
             $location.path('/classes');
         }).error(function (data, status) {
@@ -73,7 +72,6 @@ app.controller('CreateStudentCtrl', function ($scope, $http, $location) {
     };
 
     $scope.createStudent = function () {
-        console.log($scope.student);
         $http.post('/api/v1/students', $scope.student).success(function (data) {
             $location.path('/student');
         }).error(function (data, status) {
@@ -101,7 +99,6 @@ app.controller('AddClassCtrl', function ($scope, $http, $location) {
 
     $scope.addClass = function () {
         data = $scope.studentSelected.id + "#" + $scope.classSelected.id
-        console.log(data);
 
         $http.post('/api/v1/class', data).success(function (data) {
             $location.path('/student');
