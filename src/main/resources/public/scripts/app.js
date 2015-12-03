@@ -7,7 +7,7 @@ var app = angular.module('medalapp', [
 ]);
 
 app.config(function ($routeProvider) {
-    $routeProvider.when('/', {
+    $routeProvider.when('/medals', {
         templateUrl: 'views/list.html',
         controller: 'ListCtrl'
     }).when('/classes', {
@@ -26,8 +26,14 @@ app.config(function ($routeProvider) {
         templateUrl: 'views/students/add.html',
         controller: 'AddClassCtrl'
     }).otherwise({
-        redirectTo: '/'
+        redirectTo: '/medals'
     })
+});
+
+app.controller('HeaderController', function ($scope, $location) {
+    $scope.isActive = function (viewLocation) {
+        return $location.path().indexOf(viewLocation) == 0;
+    };
 });
 
 app.controller('ListCtrl', function ($scope, $http) {
@@ -49,6 +55,13 @@ app.controller('ListClassCtrl', function ($scope, $http) {
 app.controller('CreateClassCtrl', function ($scope, $http, $location) {
     $scope.class = {
     };
+    $('input[name="daterange"]').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        locale: {
+              format: 'DD-MM-YYYY'
+        }
+    });
 
     $scope.createClass = function () {
         $http.post('/api/v1/classes', $scope.class).success(function (data) {

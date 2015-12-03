@@ -4,18 +4,23 @@
     <title>Medal App</title>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/daterangepicker.css">
 </head>
 <body>
-<div class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" ng-controller="HeaderController">
     <div class="container-fluid">
         <div class="navbar-header">
-
-            <a class="navbar-brand" href="/">Medals</a>
-            <a class="navbar-brand" href="/#/students">Students</a>
-            <a class="navbar-brand" href="/#/classes">Classes</a>
+            <a class="navbar-brand" href="/">Display my medals</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li ng-class="{ active: isActive('/medals')}"><a href="/#/medals">Medals</a></li>
+                <li ng-class="{ active: isActive('/students')}"><a href="/#/students">Students</a></li>
+                <li ng-class="{ active: isActive('/classes')}"><a href="/#/classes">Classes</a></li>
+            </ul>
         </div>
     </div>
-</div>
+</nav>
 
 <div class="container" ng-view="">
 
@@ -28,6 +33,8 @@
 <script src="/js/angular-cookies.js"></script>
 <script src="/js/angular-sanitize.js"></script>
 <script src="/js/angular-resource.js"></script>
+<script src="/js/moment.min.js"></script>
+<script src="/js/daterangepicker.js"></script>
 
 <script src="/scripts/app.js"></script>
 </body>
