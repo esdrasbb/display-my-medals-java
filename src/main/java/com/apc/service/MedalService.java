@@ -41,6 +41,7 @@ public class MedalService {
         while (dbObjects.hasNext()) {
             students.add(new Student(dbObjects.next(), findAllClasses()));
         }
+        Collections.sort(students);
         return students;
     }
 

@@ -1,0 +1,25 @@
+<h2>Display Medals </h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            Name
+        </th>
+        <th ng-repeat="class in classes">
+            {{class.date}}
+        </th>
+    </tr>
+    <tr class="success-{{medal.classes}}" ng-repeat="student in students">
+        <td>{{$index+1}}</td>
+        <td>
+            {{student.name}}
+        </td>
+        <td ng-repeat="class in classes">
+            <div ng-show="{{student.participatedClasses.indexOf(class.date) > -1}}"><img src="image/medal.jpg" style="width:35px;height:35px;">
+            </div>
+        </td>
+    </tr>
+</table>

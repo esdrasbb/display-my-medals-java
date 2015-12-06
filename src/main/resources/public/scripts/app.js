@@ -10,6 +10,9 @@ app.config(function ($routeProvider) {
     $routeProvider.when('/medals', {
         templateUrl: 'views/list.html',
         controller: 'ListCtrl'
+    }).when('/medals/display', {
+        templateUrl: 'views/display.html',
+        controller: 'DisplayCtrl'
     }).when('/classes', {
         templateUrl: 'views/classes/list.html',
         controller: 'ListClassCtrl'
@@ -39,6 +42,20 @@ app.controller('HeaderController', function ($scope, $location) {
 app.controller('ListCtrl', function ($scope, $http) {
     $http.get('/api/v1/medals').success(function (data) {
         $scope.medals = data;
+    }).error(function (data, status) {
+        console.log('Error ' + data)
+    })
+});
+
+app.controller('DisplayCtrl', function ($scope, $http) {
+    $http.get('/api/v1/classes').success(function (data) {
+        $scope.classes = data;
+    }).error(function (data, status) {
+        console.log('Error ' + data)
+    })
+
+    $http.get('/api/v1/students').success(function (data) {
+        $scope.students = data;
     }).error(function (data, status) {
         console.log('Error ' + data)
     })

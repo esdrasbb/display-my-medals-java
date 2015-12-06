@@ -3,7 +3,6 @@ package com.apc.model;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Predicate;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +12,7 @@ import java.util.Optional;
 /**
  * Created by esdrasbb on 22/11/15.
  */
-public class Student {
+public class Student implements Comparable<Student>{
 
     private String id;
     private String name;
@@ -45,6 +44,36 @@ public class Student {
 
     public List<String> getParticipatedClasses() {
         return participatedClasses;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Student student = (Student) o;
+
+        if (!id.equals(student.id)) return false;
+        if (name != null ? !name.equals(student.name) : student.name != null) return false;
+        return !(participatedClasses != null ? !participatedClasses.equals(student.participatedClasses) : student.participatedClasses != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (participatedClasses != null ? participatedClasses.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public int compareTo(Student s1) {
+        if (CollectionUtils.isNotEmpty(s1.getParticipatedClasses()) && CollectionUtils.isNotEmpty(this.getParticipatedClasses())){
+            return Integer.compare(s1.getParticipatedClasses().size(), this.participatedClasses.size());
+        }else {
+            return -1;
+        }
     }
 
 }
