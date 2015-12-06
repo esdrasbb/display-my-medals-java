@@ -39,7 +39,7 @@ public class MedalService {
         List<Student> students = new ArrayList<>();
         DBCursor dbObjects = db.getCollection("students").find();
         while (dbObjects.hasNext()) {
-            students.add(new Student(dbObjects.next()));
+            students.add(new Student(dbObjects.next(), findAllClasses()));
         }
         return students;
     }
@@ -54,7 +54,7 @@ public class MedalService {
     }
 
     public Student findStudent(String id) {
-        return new Student(db.getCollection("students").findOne(new BasicDBObject("_id", new ObjectId(id))));
+        return new Student(db.getCollection("students").findOne(new BasicDBObject("_id", new ObjectId(id))), findAllClasses());
     }
 
     public Classes findClass(String id) {
@@ -77,11 +77,19 @@ public class MedalService {
         return this.findStudent(studentId);
     }
 
-    public Student updateClass(String studentId, String body) {
-        Student medal = new Gson().fromJson(body, Student.class);
-        //TODO ajustar a collection de data
-        //collection.update(new BasicDBObject("_id", new ObjectId(medalId)), new BasicDBObject("$set", new BasicDBObject("done", medal.isDone())));
-        return this.findStudent(studentId);
+    public List<Classes> findStudentClass(String studentId) {
+        Student student = new Student((BasicDBObject) db.getCollection("students").findOne(new BasicDBObject("_id", new ObjectId(studentId))), findAllClasses());
+        List<Classes> classes = this.findAllClasses();
+        classes = removeAll(classes, student.getParticipatedClasses());
+        return classes;
     }
 
+    private List<Classes> removeAll(List<Classes> classes, List<String> studentClassList){
+        if (CollectionUtils.isNotEmpty(studentClassList)){
+            for (String date: studentClassList) {
+                classes.removeIf(c -> c.getDate().equals(date));
+            }
+        }
+        return classes;
+    }
 }

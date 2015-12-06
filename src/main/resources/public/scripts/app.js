@@ -100,15 +100,22 @@ app.controller('AddClassCtrl', function ($scope, $http, $location) {
         console.log('Error ' + data)
     })
 
-    $http.get('/api/v1/classes').success(function (data) {
-        $scope.classes = data;
-    }).error(function (data, status) {
-        console.log('Error ' + data)
-    })
     $scope.studentSelected = {
     };
     $scope.classSelected = {
     };
+    $scope.classes = {
+    };
+
+    $scope.getClasses = function () {
+        var studentId = String($scope.studentSelected.id);
+        $http.get('/api/v1/students/classes/' + studentId).success(function (data) {
+            $scope.classes.length = 0;
+            $scope.classes = data;
+        }).error(function (data, status) {
+            console.log('Error ' + data)
+        })
+    }
 
     $scope.addClass = function () {
         data = $scope.studentSelected.id + "#" + $scope.classSelected.id

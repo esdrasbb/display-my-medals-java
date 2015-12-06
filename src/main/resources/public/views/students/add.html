@@ -1,11 +1,14 @@
 <form class="form-horizontal" role="form" ng-submit="addClass()">
     <div class="form-group">
         <label for="name">Student Name</label>
-        <select id="name" class="form-control" ng-model="studentSelected" ng-options="student as student.name for student in students track by student.id"></select>
+        <select id="name" class="form-control" data-ng-model="studentSelected"
+                data-ng-change="getClasses()"
+                data-ng-options="student as student.name for student in students track by student.id"></select>
     </div>
     <div class="form-group">
-        <label for="date" >Class Date</label>
-        <select id="date" class="form-control" ng-model="classSelected" ng-options="class as class.date for class in classes track by class.id"></select>
+        <label for="date">Class Date</label>
+        <select id="date" class="form-control" data-ng-model="classSelected"
+                data-ng-options="item as item.date for item in classes"></select>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">

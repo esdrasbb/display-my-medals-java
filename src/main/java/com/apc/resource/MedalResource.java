@@ -35,9 +35,6 @@ public class MedalResource {
         get(API_CONTEXT + "/classes/:id", "application/json", (request, response)
                 -> medalService.findClass(request.params(":id")), new JsonTransformer());
 
-        put(API_CONTEXT + "/classes/:id", "application/json", (request, response)
-                -> medalService.updateClass(request.params(":id"), request.body()), new JsonTransformer());
-
         get(API_CONTEXT + "/students", "application/json", (request, response)
                 -> medalService.findAllStudents(), new JsonTransformer());
 
@@ -47,8 +44,8 @@ public class MedalResource {
             return response;
         }, new JsonTransformer());
 
-        get(API_CONTEXT + "/students/:id", "application/json", (request, response)
-                -> medalService.findStudent(request.params(":id")), new JsonTransformer());
+        get(API_CONTEXT + "/students/classes/:id", "application/json", (request, response)
+                -> medalService.findStudentClass(request.params(":id")), new JsonTransformer());
 
         put(API_CONTEXT + "/students/:id", "application/json", (request, response)
                 -> medalService.addClassToStudent(request.params(":id"), request.body()), new JsonTransformer());
