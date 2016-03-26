@@ -103,7 +103,7 @@ app.controller('CreateStudentCtrl', function ($scope, $http, $location) {
 
     $scope.createStudent = function () {
         $http.post('/api/v1/students', $scope.student).success(function (data) {
-            $location.path('/student');
+            $location.path('/students');
         }).error(function (data, status) {
             console.log('Error ' + data)
         })

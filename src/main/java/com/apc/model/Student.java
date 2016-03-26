@@ -72,7 +72,7 @@ public class Student implements Comparable<Student>{
         if (CollectionUtils.isNotEmpty(s1.getParticipatedClasses()) && CollectionUtils.isNotEmpty(this.getParticipatedClasses())){
             return Integer.compare(s1.getParticipatedClasses().size(), this.participatedClasses.size());
         }else {
-            return -1;
+            return this.getName().compareTo(s1.getName());
         }
     }
 
