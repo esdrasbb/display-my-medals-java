@@ -138,7 +138,7 @@ app.controller('AddClassCtrl', function ($scope, $http, $location) {
         data = $scope.studentSelected.id + "#" + $scope.classSelected.id
 
         $http.post('/api/v1/class', data).success(function (data) {
-            $location.path('/student');
+            $location.path('/students');
         }).error(function (data, status) {
             console.log('Error ' + data)
         })
